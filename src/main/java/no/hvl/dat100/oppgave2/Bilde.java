@@ -1,51 +1,33 @@
 package no.hvl.dat100.oppgave2;
 
-import no.hvl.dat100.common.TODO;
-
 public class Bilde extends Tekst {
 
-    private String url;
-    private int likes;
+    private String url;  // URL for bildet
 
+    // Konstruktør med alle nødvendige parametere (inkludert likes)
     public Bilde(int id, String bruker, String dato, int likes, String tekst, String url) {
-        super(id, bruker, dato, tekst);
-        this.url = url;
-        this.likes = likes;
+        super(id, bruker, dato, likes, tekst);  // Kaller konstruktøren til superklassen (Tekst)
+        this.url = url;  // Setter URL-en for bildet
     }
 
-    public String getUrl1() {
-        return url;
+    // Konstruktør uten likes (valgfritt)
+    public Bilde(int id, String bruker, String dato, String tekst, String url) {
+        super(id, bruker, dato, tekst);  // Kaller konstruktøren til superklassen (Tekst)
+        this.url = url;  // Setter URL-en for bildet
     }
 
-    public void setUrl1(String url) {
-        this.url = url;
-    }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
+    // Getter for URL
     public String getUrl() {
         return url;
-
     }
 
+    // Setter for URL
     public void setUrl(String url) {
         this.url = url;
     }
 
     @Override
     public String toString() {
-        return "Bilde [id=" + getId() + 
-                   ", bruker=" + getBruker() + 
-                   ", dato=" + getDato() + 
-                   ", likes=" + likes + 
-                   ", tekst=" + getTekst() + 
-                   ", url=" + url + "]";
-
+        return "BILDE\n" + getId() + "\n" + getBruker() + "\n" + getDato() + "\n" + getLikes() + "\n" + getTekst() + "\n" + url + "\n";
     }
 }
