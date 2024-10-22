@@ -4,35 +4,48 @@ import no.hvl.dat100.common.TODO;
 
 public class Bilde extends Tekst {
 
-	// TODO - objekt variable
-	
-	public Bilde(int id, String bruker, String dato, String tekst, String url) {
-		throw new UnsupportedOperationException(TODO.constructor("Bilde"));
-	}
+    private String url;
+    private int likes;
 
-	public Bilde(int id, String bruker, String dato, int likes, String tekst, String url) {
-		throw new UnsupportedOperationException(TODO.constructor("Bilde"));
-	}
-	
-	public String getUrl() {
-		throw new UnsupportedOperationException(TODO.method());
+    public Bilde(int id, String bruker, String dato, int likes, String tekst, String url) {
+        super(id, bruker, dato, tekst);
+        this.url = url;
+        this.likes = likes;
+    }
 
-	}
+    public String getUrl1() {
+        return url;
+    }
 
-	public void setUrl(String url) {
-		throw new UnsupportedOperationException(TODO.method());
-	}
+    public void setUrl1(String url) {
+        this.url = url;
+    }
 
-	@Override
-	public String toString() {
-		throw new UnsupportedOperationException(TODO.method ());
+    public int getLikes() {
+        return likes;
+    }
 
-	}
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
 
-	// Metoden nedenfor er kun for valgfri oppgave 6
-	public String toHTML() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-				
-	}
+    public String getUrl() {
+        return url;
+
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Bilde [id=" + getId() + 
+                   ", bruker=" + getBruker() + 
+                   ", dato=" + getDato() + 
+                   ", likes=" + likes + 
+                   ", tekst=" + getTekst() + 
+                   ", url=" + url + "]";
+
+    }
 }
