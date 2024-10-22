@@ -30,4 +30,14 @@ public class Bilde extends Tekst {
     public String toString() {
         return "BILDE\n" + getId() + "\n" + getBruker() + "\n" + getDato() + "\n" + getLikes() + "\n" + getTekst() + "\n" + url + "\n";
     }
+    @Override
+    public String toHTML() {
+        return "<div class='innlegg'>\n" +
+               "<h2>" + getBruker() + "</h2>\n" +
+               "<p><em>" + getDato() + "</em></p>\n" +
+               "<p>" + getTekst() + "</p>\n" +
+               "<img src='" + getUrl() + "' alt='Bilde' />\n" +
+               "</div>\n";
+    }
+
 }
