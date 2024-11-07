@@ -17,7 +17,7 @@ public class Blogg {
     // Konstruktør med parameter
     public Blogg(int lengde) {
         this.samling = new Innlegg[lengde]; // Kapasiteten settes til den spesifikke lengden
-        this.nesteLedig = 0; // Ingen innlegg er lagt til enda
+        this.nesteLedig = 0;
     }
 
 
