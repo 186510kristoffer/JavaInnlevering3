@@ -5,147 +5,136 @@ import no.hvl.dat100.oppgave2.Tekst; // Importer Tekst-klassen
 
 public class Blogg {
     
-    private Innlegg[] samling; // array av innlegg
-    private int nesteLedig;    // teller for hvor mange innlegg som er lagt til
+    private Innlegg[] samling; 
+    private int nesteLedig;   
 
-    // Standard konstruktør
     public Blogg() {
-        this.samling = new Innlegg[20]; // Standard kapasitet på 20 innlegg
-        this.nesteLedig = 0; // Ingen innlegg er lagt til enda
+        this.samling = new Innlegg[20]; 
+        this.nesteLedig = 0; 
     }
 
-    // Konstruktør med parameter
     public Blogg(int lengde) {
-        this.samling = new Innlegg[lengde]; // Kapasiteten settes til den spesifikke lengden
+        this.samling = new Innlegg[lengde]; 
         this.nesteLedig = 0;
     }
-
-
-
- // Returnerer antall innlegg i samlingen
+ 
     public int getAntall() {
-        return nesteLedig;  // Dette er antallet innlegg som er lagret
+        return nesteLedig;  
     }
 
-    // Returnerer hele samlingen (arrayet) av innlegg
     public Innlegg[] getSamling() {
-        return samling;  // Returnerer arrayet som inneholder innleggene
+        return samling;  
     }
 
-	
- // Finner et innlegg i samlingen og returnerer indeksen hvis det finnes, ellers -1
     public int finnInnlegg(Innlegg innlegg) {
         for (int i = 0; i < nesteLedig; i++) {
-            if (samling[i].erLik(innlegg)) { // Bruker erLik for å sjekke om innleggene er like
-                return i;  // Returnerer indeksen der innlegget ble funnet
+            if (samling[i].erLik(innlegg)) { 
+                return i; 
             }
         }
-        return -1;  // Returnerer -1 hvis innlegget ikke finnes
+        return -1;  
     }
 
-    // Sjekker om et innlegg finnes i samlingen
+   
     public boolean finnes(Innlegg innlegg) {
-        return finnInnlegg(innlegg) != -1;  // Hvis finnInnlegg returnerer noe annet enn -1, finnes innlegget
+        return finnInnlegg(innlegg) != -1;  
     }
 
 
- // Sjekker om det finnes ledig plass i samlingen
     public boolean ledigPlass() {
-        return nesteLedig < samling.length;  // True hvis det er plass igjen i arrayet
+        return nesteLedig < samling.length; 
     }
 
-    // Legger til et nytt innlegg hvis det finnes ledig plass og innlegget ikke allerede finnes
+    
     public boolean leggTil(Innlegg innlegg) {
-        if (finnes(innlegg)) {  // Sjekker om innlegget allerede finnes
-            return false;  // Returnerer false hvis innlegget allerede er i samlingen
+        if (finnes(innlegg)) { 
+            return false;  
         }
         
-        if (ledigPlass()) {  // Sjekker om det er plass
-            samling[nesteLedig] = innlegg;  // Legger til innlegget på neste ledige plass
-            nesteLedig++;  // Øker antall innlegg
-            return true;  // Returnerer true når innlegget er lagt til
+        if (ledigPlass()) {  
+            samling[nesteLedig] = innlegg;  
+            nesteLedig++;  
+            return true;  
         } else {
-            return false;  // Returnerer false hvis det ikke er plass
+            return false;  
         }
     }
 
 	
- // Returnerer en tekstlig representasjon av bloggen
+ 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(nesteLedig).append("\n");  // Første linje inneholder antall innlegg
+        sb.append(nesteLedig).append("\n");  
         for (int i = 0; i < nesteLedig; i++) {
-            sb.append(samling[i].toString());  // Legger til innleggene i samlingen
+            sb.append(samling[i].toString());  
         }
-        return sb.toString();  // Returnerer hele strengen
+        return sb.toString();  
     }
 
 
-	// valgfrie oppgaver nedenfor
 	
- // Utvider arrayet 'samling' hvis det ikke er plass
     public void utvid() {
-        Innlegg[] nySamling = new Innlegg[samling.length * 2];  // Dobbler størrelsen
+        Innlegg[] nySamling = new Innlegg[samling.length * 2];  
         for (int i = 0; i < nesteLedig; i++) {
-            nySamling[i] = samling[i];  // Kopierer innleggene fra det gamle arrayet til det nye
+            nySamling[i] = samling[i];  
         }
-        samling = nySamling;  // Oppdaterer referansen til det nye arrayet
+        samling = nySamling;  
     }
 
 	
- // Legger til et nytt innlegg, og utvider arrayet hvis det ikke er plass
+ 
     public boolean leggTilUtvid(Innlegg innlegg) {
         if (finnes(innlegg)) {
-            return false;  // Hvis innlegget allerede finnes, returnerer false
+            return false;  
         }
         
         if (!ledigPlass()) {
-            utvid();  // Utvider arrayet hvis det ikke er plass
+            utvid();  
         }
         
-        samling[nesteLedig] = innlegg;  // Legger til innlegget
-        nesteLedig++;  // Øker antall innlegg
+        samling[nesteLedig] = innlegg;  
+        nesteLedig++; 
         return true;
     }
 
 	
- // Sletter et innlegg hvis det finnes i samlingen
+ 
     public boolean slett(Innlegg innlegg) {
-        int indeks = finnInnlegg(innlegg);  // Finn indeksen til innlegget
-        if (indeks != -1) {  // Hvis innlegget finnes
+        int indeks = finnInnlegg(innlegg);  
+        if (indeks != -1) {  
             for (int i = indeks; i < nesteLedig - 1; i++) {
-                samling[i] = samling[i + 1];  // Flytter innleggene ett hakk oppover
+                samling[i] = samling[i + 1];  
             }
-            samling[nesteLedig - 1] = null;  // Fjerner det siste elementet som nå er duplisert
-            nesteLedig--;  // Reduserer antall innlegg
-            return true;  // Returnerer true når innlegget er slettet
+            samling[nesteLedig - 1] = null;  
+            nesteLedig--;  
+            return true;  
         }
-        return false;  // Returnerer false hvis innlegget ikke ble funnet
+        return false;  
     }
 
 	
- // Søker etter innlegg som inneholder et nøkkelord
+ 
     public int[] search(String keyword) {
-        int[] indekser = new int[nesteLedig];  // Midlertidig array for å holde indekser
+        int[] indekser = new int[nesteLedig];  
         int teller = 0;
 
         for (int i = 0; i < nesteLedig; i++) {
-            if (samling[i] instanceof Tekst) {  // Bare tekstinnlegg kan inneholde nøkkelord
+            if (samling[i] instanceof Tekst) {  
                 Tekst tekstInnlegg = (Tekst) samling[i];
                 if (tekstInnlegg.getTekst().contains(keyword)) {
-                    indekser[teller++] = i;  // Legger til indeksen hvis nøkkelordet finnes
+                    indekser[teller++] = i;  
                 }
             }
         }
 
-        // Kopierer de relevante indeksene til et nytt array med riktig størrelse
+        
         int[] resultat = new int[teller];
         for (int i = 0; i < teller; i++) {
             resultat[i] = indekser[i];
         }
 
-        return resultat;  // Returnerer arrayet med indeksene
+        return resultat;  
     }
 
 }
