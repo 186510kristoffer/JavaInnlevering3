@@ -2,26 +2,26 @@ package no.hvl.dat100.oppgave2;
 
 public class Bilde extends Tekst {
 
-    private String url;  // URL for bildet
+    private String url; 
 
-    // Konstruktør med alle nødvendige parametere (inkludert likes)
+   
     public Bilde(int id, String bruker, String dato, int likes, String tekst, String url) {
-        super(id, bruker, dato, likes, tekst);  // Kaller konstruktøren til superklassen (Tekst)
-        this.url = url;  // Setter URL-en for bildet
+        super(id, bruker, dato, likes, tekst);  
+        this.url = url; 
     }
 
-    // Konstruktør uten likes (valgfritt)
+    
     public Bilde(int id, String bruker, String dato, String tekst, String url) {
-        super(id, bruker, dato, tekst);  // Kaller konstruktøren til superklassen (Tekst)
-        this.url = url;  // Setter URL-en for bildet
+        super(id, bruker, dato, tekst);  
+        this.url = url;  
     }
 
-    // Getter for URL
+    
     public String getUrl() {
         return url;
     }
 
-    // Setter for URL
+    
     public void setUrl(String url) {
         this.url = url;
     }
