@@ -1,7 +1,7 @@
 package no.hvl.dat100.oppgave3;
 
 import no.hvl.dat100.oppgave1.*;
-import no.hvl.dat100.oppgave2.Tekst; // Importer Tekst-klassen
+import no.hvl.dat100.oppgave2.Tekst; 
 
 public class Blogg {
     
